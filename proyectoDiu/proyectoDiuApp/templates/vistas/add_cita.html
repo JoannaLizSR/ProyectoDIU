@@ -1,0 +1,216 @@
+{% extends './base.html' %}
+    {%load static%}
+     {% block  content %}
+        {% if submitted %}
+            Your user was submitted succesfully !!!
+        {% else %}
+        <div id="multiform-1">
+            <div class="col-md-6 col-md-offset-3">
+                <form id="msform" action="" enctype="multipart/form-data" method="POST">
+                    {% csrf_token %}
+                    <!-- progressbar -->
+                    <ul id="progressbar">
+                        <li class="active">Datos Personales 1</li>
+                        <li>Datos Personales 2</li>
+                        <li >Datos Personales 3</li>
+                        <li>Fecha de cita</li>
+                        <li>Método de pago</li>
+                    </ul>
+                    <!-- fieldsets -->
+                    <fieldset>
+                        <h2 class="fs-title">Datos Personales</h2>
+                        <h3 class="fs-subtitle">Inserte los datos que se le piden</h3>
+                        <label class="requiered" > Nombre </label>
+                        <input type="text" name="nombre" placeholder="Inserte nombre"/>
+                        <label class="requiered" > Apellido Paterno </label>
+                        <input type="text" name="apellido1" placeholder="Inserte apellido paterno"/>
+                        <label class="requiered" > Apellido Materno </label>
+                        <input type="text" name="apellido2" placeholder="Inserte apellido materno"/>
+                        <input type="button" name="next" class="next action-button" value="siguiente"/>
+                    </fieldset>
+                    <fieldset>
+                        <h2 class="fs-title">Datos personales</h2>
+                        <h3 class="fs-subtitle">Inserte los datos que se le piden</h3>
+                        <label class="requiered" > CURP </label>
+                        <input type="text" name="CURP" placeholder="Ingrese CURP"/>
+                        <label class="requiered" > Dirección </label>
+                        <input type="text" name="direccion" placeholder="Ingrese dirección"/>
+                        <label class="requiered" > INE </label>
+                        <input type="file" id="id_ine" name="ine" class="file_buttons" name="filename">
+                        
+                        <input type="button" name="previous" class="previous action-button-previous" value="volver"/>
+                        <input type="button" name="next" class="next action-button" value="siguiente"/>
+                    </fieldset>
+                    <fieldset>
+                        <h2 class="fs-title">Datos personales</h2>
+                        <h3 class="fs-subtitle">Inserte los datos que se le piden</h3>
+                        <label class="unnecesary" > Pasaporte anterior </label>
+                        <input type="file" id="id_passaporte_anterior" name="passaporte_anterior" class="file_buttons" name="filename">
+                        <label class="unnecesary" > Matricula_anterior </label>
+                        <input type="file" id="id_matricula_anterior" name="matricula_anterior" class="file_buttons" name="filename">
+                        <label class="unnecesary" > Identifacion de identifacion_padre </label>
+                        <input type="file" id="id_identifacion_padre" name="identifacion_padre" class="file_buttons" name="filename">
+                        <input type="button" name="previous" class="previous action-button-previous" value="volver"/>
+                        <input type="button" name="next" class="next action-button" value="siguiente"/>
+                        
+                    </fieldset>
+                    <fieldset>
+                        <h2 class="fs-title">Fecha de cita</h2>
+                        <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+                        <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
+                        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.0/css/font-awesome.min.css">
+      
+                        <h3 class="fs-subtitle" id="subtitulo_cita">Elige un día para acudir a tu cita</h3>
+                        <div class="" style="display:flex;justify-content:center; align-items:center">
+                            <div id="datepicker"></div>
+                            <br></br>
+                        </div>
+                        <input type="text" id="fecha" name="cita_fecha"  onKeyDown="return false" />
+                        <input type="button" name="previous" class="previous action-button-previous" value="anterior"/>
+                        <input type="button" name="next" class="next action-button" value="siguiente"/>
+                        
+                    </fieldset>
+                    <fieldset>
+                        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.0/css/font-awesome.min.css">
+                        <h2 class="fs-title">Método de pago</h2>
+                        <h3 class="fs-subtitle">Elige alguna opción de pago</h3>
+                        <label for="pago1" > Paypal <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fcdn.onlinewebfonts.com%2Fsvg%2Fimg_45341.png&f=1&nofb=1" style="width:1em; height:1em"></label>
+                        
+                        <input type="radio" id="pago1" name="pago" value="Paypal">
+                        <label for="pago2" id="lpago1" > Transferencia bancaria  <img src="../static/media/icons/wallet-solid.svg" style="width:1em; height:1em" alt="nop"> </label>
+                        <input type="radio" id="pago2" name="pago" value="Transferencia bancaria">
+                        <label for="pago3"> Tarjeta de credito  <img src="../static/media/icons/credit-card-solid.svg" style="width:1em; height:1em" alt="nop"></label>
+                        <input type="radio" id="pago3" name="pago" value="Tarjeta de credito">
+                        <label for="pago4"> Omitir y pagar la cita <img src="../static/media/icons/ban-solid.svg" style="width:1em; height:1em" alt="nop"></label>
+                        <input type="radio" id="pago4" name="pago" value="omitir">
+                        <br><br>
+                        <input type="button" name="previous" class="previous action-button-previous" value="volver"/>
+                        <input type="button" name="submit" class="submit action-button" value="Finalizar" onclick="document.getElementById('submit_real').click()"/>
+                    </fieldset>   
+                    <input id="submit_real" type="submit" value="Submit"
+                    class="btn btn-success"> 
+                </form>
+            </div>    
+        </div>
+
+        {% endif%}
+        <script>
+
+            //jQuery time
+            var current_fs, next_fs, previous_fs; //fieldsets
+            var left, opacity, scale; //fieldset properties which we will animate
+            var animating; //flag to prevent quick multi-click glitches
+            $(function() {
+                $('form').submit(function() {
+                  console.log('Input 1: '+$('input[name="nombre"]').val() + ' Input 2: '+ $('input[name="CURP"]').val()); // etc.
+                });
+              });
+            $(".next").click(function(){
+                    if(animating) return false;
+                    animating = true;
+                    
+                    current_fs = $(this).parent();
+                    next_fs = $(this).parent().next();
+                    
+                    //activate next step on progressbar using the index of next_fs
+                    $("#progressbar li").eq($("fieldset").index(next_fs)).addClass("active");
+                    
+                    //show the next fieldset
+                    next_fs.show(); 
+                    //hide the current fieldset with style
+                    current_fs.animate({opacity: 0}, {
+                        step: function(now, mx) {
+                            //as the opacity of current_fs reduces to 0 - stored in "now"
+                            //1. scale current_fs down to 80%
+                            scale = 1 - (1 - now) * 0.2;
+                            //2. bring next_fs from the right(50%)
+                            left = (now * 50)+"%";
+                            //3. increase opacity of next_fs to 1 as it moves in
+                            opacity = 1 - now;
+                            current_fs.css({
+                        'transform': 'scale('+scale+')',
+                        'position': 'absolute'
+                    });
+                            next_fs.css({'left': left, 'opacity': opacity});
+                        }, 
+                        duration: 800, 
+                        complete: function(){
+                            current_fs.hide();
+                            animating = false;
+                        }, 
+                        //this comes from the custom easing plugin
+                        easing: 'easeInOutBack'
+                    });
+                });
+            
+                $(".previous").click(function(){
+                    if(animating) return false;
+                    animating = true;
+                    
+                    current_fs = $(this).parent();
+                    previous_fs = $(this).parent().prev();
+                    
+                    //de-activate current step on progressbar
+                    $("#progressbar li").eq($("fieldset").index(current_fs)).removeClass("active");
+                    
+                    //show the previous fieldset
+                    previous_fs.show(); 
+                    //hide the current fieldset with style
+                    current_fs.animate({opacity: 0}, {
+                        step: function(now, mx) {
+                            //as the opacity of current_fs reduces to 0 - stored in "now"
+                            //1. scale previous_fs from 80% to 100%
+                            scale = 0.8 + (1 - now) * 0.2;
+                            //2. take current_fs to the right(50%) - from 0%
+                            left = ((1-now) * 50)+"%";
+                            //3. increase opacity of previous_fs to 1 as it moves in
+                            opacity = 1 - now;
+                            current_fs.css({'left': left});
+                            previous_fs.css({'transform': 'scale('+scale+')', 'opacity': opacity});
+                        }, 
+                        duration: 800, 
+                        complete: function(){
+                            current_fs.hide();
+                            animating = false;
+                        }, 
+                        //this comes from the custom easing plugin
+                        easing: 'easeInOutBack'
+                    });
+                });
+                $.datepicker.regional['es'] = {
+                    closeText: 'Cerrar',
+                    prevText: '< Ant',
+                    nextText: 'Sig >',
+                    currentText: 'Hoy',
+                    monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+                    monthNamesShort: ['Ene','Feb','Mar','Abr', 'May','Jun','Jul','Ago','Sep', 'Oct','Nov','Dic'],
+                    dayNames: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
+                    dayNamesShort: ['Dom','Lun','Mar','Mié','Juv','Vie','Sáb'],
+                    dayNamesMin: ['Do','Lu','Ma','Mi','Ju','Vi','Sá'],
+                    weekHeader: 'Sm',
+                    dateFormat: 'dd/mm/yy',
+                    firstDay: 1,
+                    isRTL: false,
+                    showMonthAfterYear: false,
+                    yearSuffix: ''
+                    };
+                    $.datepicker.setDefaults($.datepicker.regional['es']);
+                    $( function() {
+                        $( "#datepicker" ).datepicker(
+                            {
+                                minDate: 1,
+                                beforeShowDay: $.datepicker.noWeekends,
+                                altField: "#fecha",
+                            }
+                        );
+                    });
+                    
+                    $(".submit").click(function(){
+                        $("#submit_real").click(); 
+                    })
+
+                    $('input[type=submit]').hide();
+            </script> 
+     {% endblock  %}
+    
+    

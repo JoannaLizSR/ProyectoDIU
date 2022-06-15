@@ -17,7 +17,21 @@ class Migration(migrations.Migration):
             fields=[
                 ('email', models.CharField(max_length=50, primary_key=True, serialize=False)),
                 ('nombre', models.CharField(max_length=50)),
-                ('fechaRegistro', models.DateField(default=datetime.datetime(2022, 6, 15, 8, 49, 49, 414305))),
+                ('fechaRegistro', models.DateField(default=datetime.datetime(2022, 6, 15, 8, 49, 49, 414305)))],
+            name='Cita',
+            fields=[
+                ('id_cita', models.AutoField(primary_key=True, serialize=False)),
+                ('nombre', models.CharField(max_length=255)),
+                ('apellido1', models.CharField(max_length=255)),
+                ('apellido2', models.CharField(max_length=255)),
+                ('CURP', models.CharField(max_length=10)),
+                ('direccion', models.CharField(max_length=650)),
+                ('ine', models.FileField(upload_to='documentos/identificacion')),
+                ('passaporte_anterior', models.FileField(blank=True, upload_to='documentos/pasaporte')),
+                ('matricula_anterior', models.FileField(blank=True, upload_to='documentos/matricula')),
+                ('identifacion_padre', models.FileField(blank=True, upload_to='documentos/padres')),
+                ('cita_fecha', models.DateTimeField(blank=True)),
+                ('pago', models.CharField(default='', max_length=255)),
             ],
         ),
     ]

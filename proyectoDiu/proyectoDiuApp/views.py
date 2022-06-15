@@ -19,6 +19,16 @@ from django.contrib.auth.tokens import default_token_generator
 from django.utils.encoding import force_bytes
 
 
+from django.shortcuts import redirect, render
+from django.http import HttpResponseRedirect
+from .models import  Cita
+from .forms import CitaForm
+
+
+import email
+from django.shortcuts import render
+from django.http import HttpResponse
+from .models import *
 
 def password_reset_request(request):
 	if request.method == "POST":
@@ -76,11 +86,6 @@ def inicioUsr(request):
 def inicioAdmin(request):
     return render(request, "vistas/inicioAdmin.html" )
 
-import email
-from django.shortcuts import render
-from django.http import HttpResponse
-from .models import *
-
 def deleteUser(request):
 
    usuario1 = User(email="likv07@gmail.com",nombre="Lizbeth")
@@ -98,3 +103,57 @@ def eliminarUsuario(request,email):
    usuario.delete()
 
    return redirect('home')
+    
+
+def delete_cita(request,cita_id):
+    
+    cita = Cita.objects.get(pk=cita_id)
+    try:
+        cita.delete()
+        print("Se logro.Se elimino")
+    except Exception as e :
+        print(e)    
+        print("NO SE  elimino")
+    finally:    
+        return HttpResponseRedirect('/')
+
+def delete_cita_menu(request,cita_id):
+    
+    cita =Cita.objects.get(pk=cita_id)
+    cita_date = getattr(cita,'cita_fecha')
+    dia = cita_date.strftime('%d')
+    mes = cita_date.strftime('%m')
+    anio = cita_date.strftime('%Y')
+    return render(request, "vistas/delete_cita.html",{'dia':dia,'mes':mes,'anio':anio,'cita_id':cita_id})
+
+def update_cita(request,cita_id):
+    cita = Cita.objects.get(pk=cita_id)
+    form = CitaForm(request.POST or request.FILES or None,instance=cita)
+    if form.is_valid():
+            form.save()
+            print("Se logro la actualización")
+            #messages.success("Success in the save")
+            return  HttpResponseRedirect('/')
+    return render(request,'vistas/update_cita.html',{'cita':cita,'form':form})
+
+def add_cita(request):
+    submitted = False
+    requiered_l = ['Nombre','Apellido1', 'Apellido2', 'CURP' ,'Direccion', 'Ine','Cita fecha']
+    if request.method == "POST":   
+        form = CitaForm(request.POST,request.FILES)
+        if form.is_valid():
+            form.save()
+            print("Se logro")
+            #messages.success("Success in the save")
+            return  HttpResponseRedirect('/add_cita?submitted=True')
+        else:
+            #messages.error(request,"Error saving")
+            print("No se logro")
+            
+    else:
+        form = CitaForm()
+        if submitted in request.GET:
+            submitted = True    
+           
+    
+    return render(request,'vistas/add_cita.html',{'form':form,'submitted':submitted,'requiered_l':requiered_l})

@@ -95,7 +95,7 @@
     <div class = "container_barra">
         <h1 >
           <div style="display:inline-block;" >
-            <p align=" center" style = "font-family: copperplate,courier,arial,helvética;">
+            <p style = "font-family: copperplate,courier,arial,helvética;">
               Pasaportes de México
               <a class="button tab" href="{% url 'home' %}">Cerrar Sesion</a>
             </p>
@@ -129,11 +129,10 @@
     <br>
     <br>
 
-    <a class="button" href="#">Obtener Cita</a>
+    <a class="button" href="{% url 'add_cita' %}">Obtener Cita</a>
     <br>
     <br>
     <a class="button" href="{% url 'deleteUser' %}">Eliminar Usuario</a>
-
 
 
 
