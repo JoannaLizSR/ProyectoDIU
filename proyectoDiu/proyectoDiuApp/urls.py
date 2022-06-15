@@ -14,4 +14,5 @@ urlpatterns = [
  path('inicioUsr/', views.inicioUsr, name="inicioUsr"),
  path('inicioAdmin/', views.inicioAdmin, name="inicioAdmin"),
  path('deleteUser/', views.deleteUser, name="deleteUser"),
+ path('deleteUser/eliminarUsuario/<email>', views.eliminarUsuario),
 ]

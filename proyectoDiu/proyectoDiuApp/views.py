@@ -88,7 +88,13 @@ def deleteUser(request):
 
    usuario2 = User(email="liz@gmail.com",nombre="Lizbeth2")
    usuario2.save()
-   
+
    consulta_Usuario = User.objects.all()
    print(consulta_Usuario)
    return render(request, "vistas/deleteUser.html", {'consulta_Usuario':consulta_Usuario})
+
+def eliminarUsuario(request,email):
+   usuario = User.objects.get(email=email)
+   usuario.delete()
+
+   return redirect('home')
