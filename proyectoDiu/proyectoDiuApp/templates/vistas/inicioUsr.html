@@ -1,0 +1,139 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <style>
+    body {
+        font-family: sans-serif;
+        color: rgb(0, 0, 0);
+        text-align: center;
+    }
+
+    .container_barra{
+      text-align:center;
+      background-color: green;
+      height:90px;
+      }
+
+    .respmenu a {
+        color: inherit;
+        text-decoration: none;
+        display: block;
+        padding: 10px 20px;
+        border-bottom: 2px solid #000000;
+        max-width: 200px;
+        font-variant: small-caps;
+        text-shadow: 1px 1px black;
+    }
+
+    .respmenu input[type="checkbox"], .respmenu .fa-bars, .respmenu .fa-times {
+        position: absolute;
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        right: 0;
+        top: 0;
+        width: 48px;
+        height: 48px;
+    }
+
+    .respmenu .fa-bars, .respmenu .fa-times {
+        font-size: 48px;
+        pointer-events: none;
+    }
+
+    .respmenu input[type="checkbox"] {
+        opacity: 0;
+    }
+
+    .respmenu {
+        color: black;
+        position: relative;
+        background: green;
+        min-height: 48px;
+    }
+
+    .respmenu nav {
+        display: none;
+    }
+
+    .respmenu input:checked ~ nav {
+        display: block;
+    }
+
+    .respmenu input:checked ~ .fa-bars {
+        display: none;
+    }
+
+    .respmenu input:not(:checked) ~ .fa-times {
+        display: none;
+    }
+
+    .button {
+              border: 3px;
+              background-color: green;
+              text-emphasis-color: rgba(0, 0, 0, 0);
+              text-decoration-color: black;
+              padding: 15px 32px;
+              text-align: center;
+              display: inline-block;
+              font-size: 20px;
+              margin: 4px 2px;
+              cursor: pointer;
+              width: 200px;
+              vertical-align: middle;
+      }
+      
+      .tab {
+        margin-left: 2.5em
+      }
+    </style>
+  </head>
+  <body>
+
+    <div class = "container_barra">
+        <h1 >
+          <div style="display:inline-block;" >
+            <p align=" center" style = "font-family: copperplate,courier,arial,helvética;">
+              Pasaportes de México 
+              <a class="button tab" href="{% url 'home' %}">Cerrar Sesion</a>  
+            </p>
+          </div>
+        </h1>
+    </div>
+
+    <div class="respmenu">
+        <input type="checkbox" src="{% static 'images/barras.jpg' %}">
+        <i class="fas fa-bars"></i>
+        <i class="fas fa-times"></i>
+        <nav>
+          <ul>
+            <li><a class="button" href="#">Modificar Datos</a></li>
+            <li><a class="button" href="#">Modificar Documentos</a></li>
+            <li><a class="button" href="#">Pagar en Linea</a></li>
+            <li><a class="button" href="{% url 'information' %}">Conocer Información</a></li>
+          </ul>
+        </nav>
+    </div>
+  
+    <br>
+    <br>
+
+    <div class="text-center">
+      <div style="display:inline-block;">
+        <img src="{% static 'images/gm.png' %}" style="width:60%;"> </img>
+      </div>
+    </div>
+
+    <br>
+    <br>
+
+    <a class="button" href="#">Obtener Cita</a>
+
+   
+
+
+
+  </body>
+</html
