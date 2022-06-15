@@ -65,4 +65,14 @@ def signup(request):
     else:
         form = SignUpForm()
     return render(request, 'vistas/signup.html', {'form': form})
+
+
+def information(request):
+    return render(request,"vistas/info.html")
+
+def inicioUsr(request):
+    return render(request, "vistas/inicioUsr.html" )
+
+def inicioAdmin(request):
+    return render(request, "vistas/inicioAdmin.html" )
     
