@@ -24,6 +24,12 @@ from django.http import HttpResponseRedirect
 from .models import  Cita
 from .forms import CitaForm
 
+
+import email
+from django.shortcuts import render
+from django.http import HttpResponse
+from .models import *
+
 def password_reset_request(request):
 	if request.method == "POST":
 		password_reset_form = PasswordResetForm(request.POST)
@@ -54,8 +60,8 @@ def password_reset_request(request):
 
 def home(request):
     return render(request,"vistas/home.html")
-    
-    
+
+
 def signup(request):
     if request.method == 'POST':
         form = SignUpForm(request.POST)
@@ -79,14 +85,26 @@ def inicioUsr(request):
 
 def inicioAdmin(request):
     return render(request, "vistas/inicioAdmin.html" )
+
+def deleteUser(request):
+
+   usuario1 = User(email="likv07@gmail.com",nombre="Lizbeth")
+   usuario1.save()
+
+   usuario2 = User(email="liz@gmail.com",nombre="Lizbeth2")
+   usuario2.save()
+
+   consulta_Usuario = User.objects.all()
+   print(consulta_Usuario)
+   return render(request, "vistas/deleteUser.html", {'consulta_Usuario':consulta_Usuario})
+
+def eliminarUsuario(request,email):
+   usuario = User.objects.get(email=email)
+   usuario.delete()
+
+   return redirect('home')
     
 
-
-
-'''
-*******************************************************************
-********************************************************************
-'''
 def delete_cita(request,cita_id):
     
     cita = Cita.objects.get(pk=cita_id)
