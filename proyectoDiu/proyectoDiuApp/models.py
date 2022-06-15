@@ -18,7 +18,7 @@ class Cita(models.Model):
     passaporte_anterior = models.FileField(upload_to ='documentos/pasaporte',blank=True)
     matricula_anterior = models.FileField(upload_to ='documentos/matricula',blank=True)
     identifacion_padre = models.FileField(upload_to ='documentos/padres',blank=True)
-    cita_fecha = models.DateTimeField(blank=True) #recuerda cambiar ese dato
+    cita_fecha = models.DateField( blank=True) #recuerda cambiar ese dato
     pago = models.CharField(max_length=255, default="")
     
 

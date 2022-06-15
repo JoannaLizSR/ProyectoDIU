@@ -18,29 +18,36 @@ class SignUpForm(UserCreationForm):
 
 
 class CitaForm(ModelForm):
+    nombre = forms.TextInput(attrs={'class':'form-control'})
+    apellido1 = forms.TextInput(attrs={'class':'form-control'})
+    apellido2 =forms.TextInput(attrs={'class':'form-control'})
+    CURP = forms.TextInput(attrs={'class':'form-control'})
+    direccion = forms.TextInput(attrs={'class':'form-control'})
+    cita_fecha  =forms.DateTimeInput(attrs={
+            'class': 'datepicker'
+        })  
     
-    class Meta:
+    class Meta():
+        # fields = '__all__'
         model = Cita
-        fields = '__all__'
+        verbose_name_plural='citas'
         widgets ={
             'nombre':forms.TextInput(attrs={'class':'form-control'}),
             'apellido1':forms.TextInput(attrs={'class':'form-control'}),
             'apellido2':forms.TextInput(attrs={'class':'form-control'}),
             'CURP':forms.TextInput(attrs={'class':'form-control'}),
             'direccion':forms.TextInput(attrs={'class':'form-control'}),
-           
-            
         }
 
     def __init__(self):
-         self.fields['cita_fecha'].input_formats = ['%d/%m/%Y']
-         self.fields['cita_fecha'].widget = forms.DateTimeInput(attrs={
+        self.cita_fecha.input_formats = ['%d/%m/%Y']
+        self.cita_fecha.widget = forms.DateTimeInput(attrs={
             'class': 'datepicker'
-            
         })  
+
     class Meta:
-        verbose_name_plural='citas'
-    
+        fields = '__all__'
+
     def __str__(self):
         return self.nombre
  

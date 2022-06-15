@@ -1,9 +1,6 @@
 {% extends './base.html' %}
     {%load static%}
      {% block  content %}
-        {{ form.errors }} 
-        {{ form.non_field_errors }}    
-        
         {% if submitted %}
             Your user was submitted succesfully !!!
         {% else %}
