@@ -5,7 +5,7 @@
 Integrantes :
 
 -
--
+- Carreño Velázquez Lizbeth Dannae [304334229]
 -
 - Sanchez Rangel Joanna Lizeth    [315060982]
 
