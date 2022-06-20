@@ -40,7 +40,41 @@
       .text-center {
         text-align: center !important;
       }
+      
+
+
+      th {
+        padding: 15px;
+        text-align: left;
+        background-color: #04AA6D;
+        color: white;
+        text-align: center;
+      }
+
+      td {
+        padding: 15px;
+        height: 30px;
+        vertical-align: bottom;
+        text-align: left;
+      }
     </style>
+    <script type="teXt/javascript">
+      function desplegar(tabla_a_desplegar,estadoT) {
+      var tablA = document.getElementById(tabla_a_desplegar);
+      var estadOt = document.getElementById(estadoT);
+      
+      switch(tablA.style.display) {
+      case "none":
+      tablA.style.display = "block";
+      estadOt.innerHTML = "Ocultar contenido"
+      break;
+      default:
+      tablA.style.display = "none";
+      estadOt.innerHTML = "Mostrar contenido"
+      break;
+      }
+      }
+      </script>
   </head>
   <body>
     <div class = "container_barra">
@@ -65,6 +99,302 @@
     <br>
     <br>
 
-    <h1> Aqui va la información</h1>
-  </body>
+    <table border="2" width="device-width" align="center">
+      <tr>
+      <td onClick="desplegar('NacionalidadMexicana','estadoT')">
+        <u><b>
+            Acreditar Nacionalidad Mexicana
+        </b></u>
+      </td>
+      </tr>
+      <tr>
+      <td>
+        <table align="center" id="NacionalidadMexicana" style="display:none;">
+          <thead>
+          <tr>
+              <th scope="col">Documentos</th>
+              <th scope="col">Presentación</th>
+          </tr>
+          </thead>
+          <tbody>
+          <caption>
+              <h2>
+              Acreditar nacionalidad mexicana entregando uno de los siguientes documentos:
+              </h2>
+          </caption>
+          <tr >
+              <td>Copia certificada del acta de nacimiento expedida por la oficina del Registro Civil mexicano*</td>
+              <th scope="row" >Original</th>
+          </tr>
+          <tr>
+              <td >Copia certificada del acta de nacimiento expedida por las Oficinas Consulares</td>
+              <th scope="row">Original</th>
+          </tr>
+          <tr>
+              <td >Carta de Naturalización</td>
+              <th scope="row">Original y copia</th>
+          </tr>
+          <tr>
+              <td >Declaratoria de nacionalidad mexicana por nacimiento</td>
+              <th scope="row">Original y copia</th>
+          </tr>
+          <tr>
+              <td >Certificado de nacionalidad mexicana</td>
+              <th scope="row">Original y copia</th>
+          </tr>
+          </tbody>
+      </table>
+      </td>
+      </tr>
+      <!-- ------------------------------------------------------------------------------------------------------------- -->
+      <tr>
+        <td onClick="desplegar('identidad','estadoT')">
+          <u><b>
+              Acreditar Identidad
+          </b></u>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <table align="center" id="identidad" style="display:none;">
+            <thead>
+            <tr>
+                <th scope="col">Documentos</th>
+                <th scope="col">Presentación</th>
+            </tr>
+            </thead>
+            <tbody>
+            <caption>
+                <h2>
+                Acreditar identidad presentando uno de los siguientes documentos:
+                </h2>
+            </caption>
+            <tr >
+                <td>Credencial para votar del Instituto Nacional Electoral (INE/IFE)</td>
+                <th scope="row" >Original y copia</th>
+            </tr>
+            <tr>
+                <td >Cédula Profesional</td>
+                <th scope="row">Original y copia</th>
+            </tr>
+            <tr>
+                <td >Título Profesional</td>
+                <th scope="row">Original y copia</th>
+            </tr>
+            <tr>
+                <td >Carta de Pasante</td>
+                <th scope="row">Original y copia</th>
+            </tr>
+            <tr>
+                <td >Cartilla de Identidad del Servicio Militar Nacional liberada</td>
+                <th scope="row">Original y copia</th>
+            </tr>
+            <tr>
+              <td>Credencial del Instituto Nacional de las Personas Adultas Mayores (INAPAM)</td>
+              <th scope="row">Original y copia</th>
+            </tr>
+            <tr>
+              <td>Cédula de Identidad Ciudadana</td>
+              <th scope="row">Original y copia</th>
+            </tr>
+            <tr>
+              <td>Certificado de Matrícula Consular de alta seguridad</td>
+              <th scope="row">Original y copia</th>
+            </tr>
+            <tr>
+              <td>Carta de Naturalización</td>
+              <th scope="row">Originaly copia</th>
+            </tr>
+            <tr>
+              <td>Certificado de nacionalidad mexicana</td>
+              <th scope="row">Original y copia</th>
+            </tr>
+            <tr>
+              <td>Declaratoria de nacionalidad mexicana por nacimiento</td>
+              <th scope="row">Original y copia</th>
+            </tr>
+            <tr>
+              <td>Credencial de servicios médicos de una institución pública de salud o seguridad social</td>
+              <th scope="row">Original y copia</th>
+            </tr>
+            <tr>
+              <td>Credencial para jubilados o pensionados</td>
+              <th scope="row">Original y copia</th>
+            </tr>
+            <tr>
+              <td>Credencial nacional para personas con discapacidad</td>
+              <th scope="row">Original y copia</th>
+            </tr>
+            </tbody>
+        </table>
+        </td>
+      </tr>
+      <!-- ------------------------------------------------------------------------------------------------------------- -->
+      <tr>
+        <td onClick="desplegar('pago','estadoT3')">
+          <u><b>
+              Pago
+          </b></u>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <table align="center" id="pago" style="display:none;">
+            <thead>
+            <tr>
+                <th scope="col">Concepto</th>
+                <th scope="col">Monto</th>
+            </tr>
+            </thead>
+            <tbody>
+            <caption><h1>Costos</h1></caption>
+            <tr>
+                <td>Monto de derechos 2022 para la expedición de pasaporte con vigencia de 3 años</td>
+                <th scope="row"> 	$1,470.00 mxn</th>
+            </tr>
+            <tr>
+                <td>
+                Monto de derechos 2022 para la expedición de pasaporte con vigencia de 6 años
+                </td>
+                <th scope="row"> 	$2,000.00 mxn</th>
+            </tr>
+            <tr>
+                <td>
+                Monto de derechos 2022 para la expedición de pasaporte con vigencia de 10 años
+                </td>
+                <th scope="row">
+                $3,505.00 mxn
+                </th>
+            </tr>
+            <tr>
+                <td>
+                Monto de derechos 2022 con beneficio del 50% para la expedición de pasaporte con vigencia de 3 años
+                </td>
+                <th scope="row">
+                $735.00 mxn
+                </th>
+            </tr>
+            <tr>
+                <td>
+                Monto de derechos 2022 con beneficio del 50% para la expedición de pasaporte con vigencia de 6 años
+                </td>
+                <th scope="row">
+                $1,000.00 mxn
+                </th>
+            </tr>
+            <tr>
+                <td>
+                Monto de derechos 2022 con beneficio del 50% para la expedición de pasaporte con vigencia de 10 años
+                </td>
+                <th scope="row">
+                $1,755.00 mxn
+                </th>
+            </tr>
+            </tbody>
+        </table>
+        </td>
+      </tr>
+
+      <!-- ------------------------------------------------------------------------------------------------------------- -->
+      <tr>
+        <td onClick="desplegar('conyuge','estadoT')">
+          <u><b>
+              Incorporación de apellido del cónyuge
+          </b></u>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <table align="center" id="conyuge" style="display:none;">
+            <thead>
+              <tr>
+                  <th scope="col">Documentos</th>
+                  <th scope="col">Presentación</th>
+              </tr>
+              </thead>
+              <tbody>
+                <caption>
+                  <h2>
+                    En caso de requerir la incorporación del apellido de su cónyuge en el apartado correspondiente que se encuentra dentro de la hoja de datos del pasaporte, deberá entregar uno de los siguientes documentos:
+                  </h2>
+                </caption>
+                <tr >
+                    <td>Copia certificada del acta de matrimonio expedida por la oficina del Registro Civil mexicano</td>
+                    <th scope="row" >Original y copia</th>
+                </tr>
+                <tr >
+                  <td>Copia certificada del acta de matrimonio expedida por las Oficinas Consulares mexicanas</td>
+                  <th scope="row" >Original y copia</th>
+              </tr>
+              </tbody>
+          </table>
+        </td>
+      </tr>
+
+       <!-- ------------------------------------------------------------------------------------------------------------- -->
+       <tr>
+        <td onClick="desplegar('identidadGenero','estadoT')">
+          <u><b>
+              Reasignación para la concordancia sexo-génerica o identidad de género
+          </b></u>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <table align="center" id="identidadGenero" style="display:none;">
+            <thead>
+              <tr>
+                  <th scope="col">Documentos</th>
+                  <th scope="col">Presentación</th>
+              </tr>
+              </thead>
+              <tbody>
+                <tr >
+                    <td>En caso de que la Secretaría no haya sido notificada del juicio para la reasignación para la concordancia sexo-genérica o del trámite administrativo de identidad de género, el solicitante podrá entregarlo en la Delegación.</td>
+                    <th scope="row" ></th>
+                </tr>
+                <tr>
+                  <td>En caso contrario, la Secretaría lo solicitará a la Oficina Central del Registro Civil de la Ciudad de México, por lo que el tiempo de respuesta queda sujeto al que establezca dicha autoridad.</td>
+                  <th scope="row"></th>
+                </tr>
+                <tr>
+                  <td>Si en el proceso de verificación del acta de nacimiento, se detecta que el acta de nacimiento primigenia no ha sido reservada, el solicitante deberá realizar el procedimiento correspondiente de conformidad con la legislación aplicable.</td>
+                  <th scope="row"></th>
+                </tr>
+          </table>
+        </td>
+      </tr>
+
+       <!-- ------------------------------------------------------------------------------------------------------------- -->
+       <tr>
+        <td onClick="desplegar('curpCertificada','estadoT')">
+          <u><b>
+              Curp Certificado
+          </b></u>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <table align="center" id="curpCertificada" style="display:none;">
+            <thead>
+              <tr>
+                  <th scope="col">Documentos</th>
+                  <th scope="col">Presentación</th>
+              </tr>
+              </thead>
+              <tbody>
+                <tr >
+                    <td>Copia Simple de la Clave Única de Registro Población (CURP) https://www.gob.mx/curp/</td>
+                    <th scope="row" >copia</th>
+                </tr>
+          </table>
+        </td>
+      </tr>
+    </table> 
+
+    
+    
+
+    
+</body>
 </html>

@@ -86,7 +86,8 @@ def inicioAdmin(request):
 '''
 *******************************************************************
 ********************************************************************
-'''def delete_cita(request,cita_id):
+'''
+def delete_cita(request,cita_id):
     
     cita = Cita.objects.get(pk=cita_id)
     try:
