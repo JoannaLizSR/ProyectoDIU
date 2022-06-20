@@ -241,6 +241,328 @@
 
                 $('input[type=submit]').hide();
         </script> 
+        
+            <style>
+                body {
+                    background: #000 repeat 0 0 #555;
+                  }
+                
+                  .ui-datepicker {
+                    width: 216px;
+                    height: auto;
+                    margin: 5px auto 0;
+                    font: 9pt Arial, sans-serif;
+                    -webkit-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, .5);
+                    -moz-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, .5);
+                    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, .5);
+                  }
+                  
+                  .ui-datepicker a {
+                    text-decoration: none;
+                  }
+                
+                  .ui-datepicker table {
+                    width: 100%;
+                    height: 100%;
+                    color: #9D2449; 
+                  }
+                
+                  .ui-datepicker-month{
+                    border-radius: 50%;
+                    -moz-border-radius:50%;
+                    -webkit-border-radius: 50%;
+                    
+                  }
+                  .ui-datepicker-current-day .ui-state-active { 
+                    background: #285C4D;
+                    border-color: #285C4D;
+                    border-radius: 50%;
+                    -moz-border-radius:50%;
+                    -webkit-border-radius: 50%;
+                   }
+                   /*.ui-datepicker-prev .ui-icon, .ui-datepicker-next .ui-icon {
+                    background: #285C4D;
+                  }*/ 
+                
+                  .ui-datepicker-header {
+                    background: #285C4D;
+                    color: #9D2449;
+                    font-weight: bold;
+                    -webkit-box-shadow: inset 0px 1px 1px 0px rgba(250, 250, 250, 2);
+                    -moz-box-shadow: inset 0px 1px 1px 0px rgba(250, 250, 250, .2);
+                    box-shadow: inset 0px 1px 1px 0px rgba(250, 250, 250, .2);
+                    /*text-shadow: 1px -1px 0px #000;*/
+                    filter: dropshadow(color=#000, offx=1, offy=-1);
+                    line-height: 30px;
+                    border-width: 0 0 0 0;
+                    border-style: solid;
+                    border-color: #13322B;
+                  }
+                
+                  .ui-datepicker-title {
+                    text-align: center;
+                  }
+                  .ui-datepicker-prev span,
+                  .ui-datepicker-next span {
+                    background-image: none !important;
+                  }
+                
+                  .ui-datepicker-prev:before,
+                  .ui-datepicker-next:before {
+                    font-family: FontAwesome;
+                    position: absolute;
+                    top: 0;
+                    right: 0;
+                    bottom: 0;
+                    left: 0;
+                    display: flex;
+                    font-weight: normal;
+                    align-items: center;
+                    justify-content: center;
+                  }
+                
+                  .ui-datepicker-prev:before {
+                    content: "\f053";
+                  }
+                  
+                
+                  .ui-datepicker-next:before {
+                    content: "\f054";
+                  }
+                  .requiered{
+                    color: #9D2449;
+                    text-align: left;
+                    float: left;
+                  }
+                  .requiered::after{
+                    content: "(obligatorio *)";
+                    color: red;
+                    font-size: x-small;
+                  }
+                
+                  .unnecesary{
+                    color: #13322B;
+                    text-align: left;
+                    float: left;
+                  }
+                  #subtitulo_cita::after{
+                    content: "No se cuentan los fines de semana ni dias feriados";
+                    color: red;
+                    font-size: x-small;
+                  }
+                
+                  /**-----------------------------------------------------------------*/
+                  /*custom font*/
+                
+                
+                /*basic reset*/
+                * {
+                    margin: 0;
+                    padding: 0;
+                }
+                
+                #multiform-1 {
+                    position:fixed;
+                    width:100%;
+                    height:100%;
+                    background: #285C4D; /* fallback for old browsers */
+                    background: -webkit-linear-gradient(to left, #d4c19c, #13322B); /* Chrome 10-25, Safari 5.1-6 */
+                }
+                
+                body {
+                    font-family: montserrat, arial, verdana;
+                    background: transparent;
+                }
+                
+                /*form styles*/
+                #msform {
+                    text-align: center;
+                    position: relative;
+                    margin-bottom: 25%;
+                }
+                
+                #msform fieldset {
+                    background: white;
+                    border: 0 none;
+                    border-radius: 0px;
+                    box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.4);
+                    padding: 20px 30px;
+                    box-sizing: border-box;
+                    width: 80%;
+                    margin: 0 10%;
+                
+                    /*stacking fieldsets above each other*/
+                    position: relative;
+                }
+                
+                /*Hide all except first fieldset*/
+                #msform fieldset:not(:first-of-type) {
+                    display: none;
+                }
+                
+                /*inputs*/
+                
+                #msform input, #msform textarea {
+                    padding: 15px;
+                    border: 1px solid #ccc;
+                    border-radius: 0px;
+                    margin-bottom: 10px;
+                    width: 100%;
+                    box-sizing: border-box;
+                    font-family: montserrat;
+                    color: #2C3E50;
+                    font-size: 13px;
+                }
+                
+                
+                #msform input:focus, #msform textarea:focus {
+                    -moz-box-shadow: none !important;
+                    -webkit-box-shadow: none !important;
+                    box-shadow: none !important;
+                    border: 1px solid #9D2449;
+                    outline-width: 0;
+                    transition: All 1s ease-in;
+                    -webkit-transition: All .3s ease-in;
+                    -moz-transition: All 2s ease-in;
+                    -o-transition: All 2s ease-in;
+                }
+                
+                /*buttons*/
+                #msform .action-button {
+                    width: 100px;
+                    background: #9D2449;
+                    font-weight: bold;
+                    color: white;
+                    border: 0 none;
+                    border-radius: 25px;
+                    cursor: pointer;
+                    padding: 10px 5px;
+                    margin: 10px 5px;
+                }
+                
+                #msform .action-button:hover, #msform .action-button:focus {
+                    box-shadow: 0 0 0 2px white, 0 0 0 3px #9D2449;
+                }
+                
+                #msform .action-button-previous {
+                    width: 100px;
+                    background: #13322B;
+                    font-weight: bold;
+                    color: white;
+                    border: 0 none;
+                    border-radius: 25px;
+                    cursor: pointer;
+                    padding: 10px 5px;
+                    margin: 10px 5px;
+                }
+                
+                #msform .action-button-previous:hover, #msform .action-button-previous:focus {
+                    box-shadow: 0 0 0 2px white, 0 0 0 3px #13322B;
+                }
+                
+                /*headings*/
+                .fs-title {
+                    font-size: 18px;
+                    text-transform: uppercase;
+                    color: #2C3E50;
+                    margin-bottom: 10px;
+                    letter-spacing: 2px;
+                    font-weight: bold;
+                }
+                
+                .fs-subtitle {
+                    font-weight: normal;
+                    font-size: 13px;
+                    color: #666;
+                    margin-bottom: 20px;
+                }
+                
+                /*progressbar*/
+                #progressbar {
+                    margin-bottom: 1px;
+                    width: 100%;
+                    overflow: hidden;
+                    /*CSS counters to number the steps*/
+                    counter-reset: step;
+                }
+                
+                #progressbar li {
+                    list-style-type: none;
+                    color: white;
+                    text-transform: uppercase;
+                    font-size: 9px;
+                    width: 33.33%;
+                    float: left;
+                    position: relative;
+                    letter-spacing: 1px;
+                }
+                
+                #progressbar li:before {
+                    content: counter(step);
+                    counter-increment: step;
+                    width: 24px;
+                    height: 24px;
+                    line-height: 26px;
+                    display: block;
+                    font-size: 12px;
+                    color: #333;
+                    background: white;
+                    border-radius: 25px;
+                    margin: 0 auto 10px auto;
+                }
+                
+                /*progressbar connectors*/
+                #progressbar li:after {
+                    content: '';
+                    width: 100%;
+                    height: 2px;
+                    background: white;
+                    position: absolute;
+                    left: -50%;
+                    top: 9px;
+                    z-index: -1; /*put it behind the numbers*/
+                }
+                
+                #progressbar li:first-child:after {
+                    /*connector not needed before the first step*/
+                    content: none;
+                }
+                
+                /*marking active/completed steps green*/
+                /*The number of the step and the connector before it = green*/
+                #progressbar li.active:before, #progressbar li.active:after {
+                    background: #9D2449;
+                    color: white;
+                }
+                
+                
+                /* Not relevant to this form */
+                .dme_link {
+                    margin-top: 30px;
+                    text-align: center;
+                }
+                .dme_link a {
+                    background: #FFF;
+                    font-weight: bold;
+                    color: #9D2449;
+                    border: 0 none;
+                    border-radius: 25px;
+                    cursor: pointer;
+                    padding: 5px 25px;
+                    font-size: 12px;
+                }
+                
+                .dme_link a:hover, .dme_link a:focus {
+                    background: #C5C5F1;
+                    text-decoration: none;
+                }
+                
+                #fecha{
+                  text-align: center;
+                  margin-top: 5%;
+                }
+                
+            </style>
  {% endblock  %}
 
 
