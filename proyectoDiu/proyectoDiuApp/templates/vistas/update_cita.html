@@ -2,10 +2,7 @@
 
 {% extends './base.html' %}
 {%load static%}
- {% block  content %}
-    {{ form.errors }} 
-    {{ form.non_field_errors }}    
-    
+ {% block  content %}    
     {% if submitted %}
         Your cita was submitted succesfully !!!
     {% else %}
@@ -92,11 +89,12 @@
                     <label for="pago1" > Paypal <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fcdn.onlinewebfonts.com%2Fsvg%2Fimg_45341.png&f=1&nofb=1" style="width:1em; height:1em"></label>
                     
                     <input type="radio" id="pago1" name="pago" value="Paypal">
-                    <label for="pago2" id="lpago1" > Transferencia bancaria  <img src="../static/media/icons/wallet-solid.svg" style="width:1em; height:1em" alt="nop"> </label>
+                    {%load static%}
+                    <label for="pago2" id="lpago1" > Transferencia bancaria  <img src="{% static 'media/icons/wallet-solid.svg'%}" style="width:1em; height:1em" alt="nop"> </label>
                     <input type="radio" id="pago2" name="pago" value="Transferencia bancaria">
-                    <label for="pago3"> Tarjeta de credito  <img src="../static/media/icons/credit-card-solid.svg" style="width:1em; height:1em" alt="nop"></label>
+                    <label for="pago3"> Tarjeta de credito  <img src="{% static 'media/icons/credit-card-solid.svg'%}" style="width:1em; height:1em" alt="nop"></label>
                     <input type="radio" id="pago3" name="pago" value="Tarjeta de credito">
-                    <label for="pago4"> Omitir y pagar la cita <img src="../static/media/icons/ban-solid.svg" style="width:1em; height:1em" alt="nop"></label>
+                    <label for="pago4"> Omitir y pagar la cita <img src="{% static 'media/icons/ban-solid.svg'%}" style="width:1em; height:1em" alt="nop"></label>
                     <input type="radio" id="pago4" name="pago" value="omitir">
                     <br><br>
                     <input type="button" name="previous" class="previous action-button-previous" value="volver"/>
