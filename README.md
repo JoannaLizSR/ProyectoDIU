@@ -4,7 +4,7 @@
 
 Integrantes :
 
--
+-Alam Acosta Meza                  [315124569] 
 - Carreño Velázquez Lizbeth Dannae [304334229]
 - García Santamaría José Luis [316174646]
 - Sanchez Rangel Joanna Lizeth    [315060982]
