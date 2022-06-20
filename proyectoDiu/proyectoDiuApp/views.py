@@ -86,8 +86,7 @@ def inicioAdmin(request):
 '''
 *******************************************************************
 ********************************************************************
-'''
-def delete_cita(request,cita_id):
+'''def delete_cita(request,cita_id):
     
     cita = Cita.objects.get(pk=cita_id)
     try:
@@ -97,7 +96,7 @@ def delete_cita(request,cita_id):
         print(e)    
         print("NO SE  elimino")
     finally:    
-        return HttpResponseRedirect('/')
+        return HttpResponseRedirect('/home')
 
 def delete_cita_menu(request,cita_id):
     
@@ -115,22 +114,26 @@ def update_cita(request,cita_id):
             form.save()
             print("Se logro la actualización")
             #messages.success("Success in the save")
-            return  HttpResponseRedirect('/')
+            return  HttpResponseRedirect('/home')
+    else:
+        print('Hubo un error')
+        print(form.errors)   
     return render(request,'vistas/update_cita.html',{'cita':cita,'form':form})
 
 def add_cita(request):
     submitted = False
     requiered_l = ['Nombre','Apellido1', 'Apellido2', 'CURP' ,'Direccion', 'Ine','Cita fecha']
-    if request.method == "POST":   
+    if request.method == "POST":        
         form = CitaForm(request.POST,request.FILES)
         if form.is_valid():
             form.save()
             print("Se logro")
             #messages.success("Success in the save")
-            return  HttpResponseRedirect('/add_cita?submitted=True')
+            return  HttpResponseRedirect('/home/?submitted=True')
         else:
             #messages.error(request,"Error saving")
             print("No se logro")
+            print(form.errors)
             
     else:
         form = CitaForm()
@@ -139,3 +142,4 @@ def add_cita(request):
            
     
     return render(request,'vistas/add_cita.html',{'form':form,'submitted':submitted,'requiered_l':requiered_l})
+
