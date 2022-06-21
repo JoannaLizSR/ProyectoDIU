@@ -19,7 +19,17 @@
      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
 </head>
 <body>
-    <h1>Pagina Prueba</h1>
+    
+    <div class = "container_barra">
+        <h1 >
+          <div style="display:flex; justify-content:space-around;" >
+            <p align=" center" >
+               <h2>Pasaportes de México</h2> 
+              <a class="button-tab" href="{% url 'home' %}" style="color: #b38E5D; margin-top:1%;">Cerrar Sesion</a>  
+            </p>
+          </div>
+        </h1>
+    </div>
     <div id="content">{%block content%}{%endblock%} </div>
 </body>
 <script>
@@ -135,4 +145,28 @@
         return false;
     })      
 </script>
+<style>
+    .container_barra{
+        text-align:center;
+        background-color: green;
+        height:70px;
+        margin-top:-25px
+        }
+
+        .button-tab {
+            border: 3px;
+            background-color: green;
+            text-emphasis-color: #b38E5D;
+            text-decoration-color: black;
+            padding: 15px 32px;
+            text-align: center;
+            display: inline-block;
+            font-size: 20px;
+            margin: 4px 2px;
+            cursor: pointer;
+            width: 200px;
+            vertical-align: middle;
+            margin-left: 2.5em
+    }    
+</style>
 </html>
