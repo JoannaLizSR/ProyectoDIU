@@ -1,0 +1,83 @@
+<!-- registration/login.html -->
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>iniciar sesión</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+	<!-- Bootstrap CSS -->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+<style>
+h1{
+	text-align:center;
+	display:inline-block;
+}
+
+.username_form{
+	text-align:center;
+}
+
+.container_barrainicio{
+	text-align:center;
+	background-color: green;
+	height:90px;
+
+}
+
+.container_formulario{
+	text-align:center;
+}
+
+.submit_button{
+	background-color:black;
+	color:white;
+	height: 40px;
+	width: 265px;
+}
+
+
+</style>
+</head>
+<body>
+<div class ="container_barrainicio">
+<h1>Inicia Sesión</h1>
+<div style="display:inline-block;">
+<img src="{% static 'images/logoMexico2.png' %}" style="width:80px;"> </img>
+</div>
+<br>
+</div>
+<br>
+<div class ="container_formulario">
+    <form method="post">
+      {% csrf_token %}
+      <br>
+      <br>
+      <div class="username_form">
+	<td>{{ form.username.label_tag}}</td>
+	<td>{{ form.username }}</td>
+      </div>
+      <br>
+      <br>
+      <div>
+	<td>{{ form.password.label_tag }}</td>
+	<td>{{ form.password }}</td>
+      </div>
+      <div>
+      <br>
+      <br>
+        <button type="submit" class="submit_button" value="login">Sign in</button>
+	<input type="hidden" name="next" value="{{ next }}" />
+	<br>
+	<br>
+	<a href="/password_reset">¿Olvidaste tu contraseña?  </a>
+      </div>
+    </form>
+    </div>
+
+</body>
+</html>
+

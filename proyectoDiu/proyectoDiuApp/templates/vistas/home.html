@@ -1,0 +1,78 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <style>
+     body {
+        font-family: sans-serif;
+        color: rgb(0, 0, 0);
+        text-align: center;
+      } 
+      
+      .container_barra{
+      text-align:center;
+      background-color: green;
+      height:90px;
+      }
+
+      .btn-group-vertical {
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: center;
+      }
+
+      .button {
+              border: 3px;
+              background-color: rgb(2, 165, 2);
+              text-emphasis-color: rgba(0, 0, 0, 0);
+              text-decoration-color: black;
+              padding: 15px 32px;
+              text-align: center;
+              display: inline-block;
+              font-size: 20px;
+              margin: 4px 2px;
+              cursor: pointer;
+              width: 200px;
+              vertical-align: middle;
+      }
+
+      .text-center {
+        text-align: center !important;
+      }
+    </style>
+  </head>
+  <body>
+    <div class = "container_barra">
+      <h1>
+        <div style="display:inline-block;">
+          <p style = "font-family: copperplate,courier,arial,helvética;">
+            Pasaportes de México
+          </p>
+        </div>
+      </h1>
+    </div>
+
+    <br>
+    <br>
+
+    <div class="text-center">
+      <div style="display:inline-block;">
+        <img src="{% static 'images/gm.png' %}" style="width:60%;"> </img>
+      </div>
+    </div>
+
+    <br>
+    <br>
+
+    <div id="f2c1" style="list-style-type:none;">
+      <li>
+           <ul> <a class="button" href="{% url 'login' %}">Iniciar Sesion</a></ul>
+           <ul><a class="button" href="{% url 'signup' %}">Registrarse</a></ul>
+           <ul><a class="button" href="{% url 'information' %}">Conocer Información</a></ul>
+           <!-- <ul><a class="button" href="{% url 'inicioUsr' %}">incio Usr</a></ul>
+           <ul><a class="button" href="{% url 'inicioAdmin' %}">incio admin</a></ul> -->
+      </li>
+     </div>
+  </body>
+</html>

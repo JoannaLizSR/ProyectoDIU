@@ -1,0 +1,541 @@
+{% extends './base.html' %}
+    {% load static%}
+     {% block  content %}
+     <link rel="stylesheet" type="text/css" href="{% static 'resources/style.css' %}"/>
+        {% if submitted %}
+            Your user was submitted succesfully !!!
+        {% else %}
+        <div id="multiform-1">
+            <div class="col-md-6 col-md-offset-3">
+                <form id="msform" action="" enctype="multipart/form-data" method="POST">
+                    {% csrf_token %}
+                    <!-- progressbar -->
+                    <ul id="progressbar">
+                        <li class="active">Datos Personales 1</li>
+                        <li>Datos Personales 2</li>
+                        <li >Datos Personales 3</li>
+                        <li>Fecha de cita</li>
+                        <li>Método de pago</li>
+                    </ul>
+                    <!-- fieldsets -->
+                    <fieldset>
+                        <h2 class="fs-title">Datos Personales</h2>
+                        <h3 class="fs-subtitle">Inserte los datos que se le piden</h3>
+                        <label class="requiered" > Nombre </label>
+                        <input type="text" name="nombre" placeholder="Inserte nombre"/>
+                        <label class="requiered" > Apellido Paterno </label>
+                        <input type="text" name="apellido1" placeholder="Inserte apellido paterno"/>
+                        <label class="requiered" > Apellido Materno </label>
+                        <input type="text" name="apellido2" placeholder="Inserte apellido materno"/>
+                        <input type="button" name="next" class="next action-button" value="siguiente"/>
+                    </fieldset>
+                    <fieldset>
+                        <h2 class="fs-title">Datos personales</h2>
+                        <h3 class="fs-subtitle">Inserte los datos que se le piden</h3>
+                        <label class="requiered" > CURP </label>
+                        <input type="text" name="CURP" placeholder="Ingrese CURP"/>
+                        <label class="requiered" > Dirección </label>
+                        <input type="text" name="direccion" placeholder="Ingrese dirección"/>
+                        <label class="requiered" > INE </label>
+                        <input type="file" id="id_ine" name="ine" class="file_buttons" name="filename">
+                        
+                        <input type="button" name="previous" class="previous action-button-previous" value="volver"/>
+                        <input type="button" name="next" class="next action-button" value="siguiente"/>
+                    </fieldset>
+                    <fieldset>
+                        <h2 class="fs-title">Datos personales</h2>
+                        <h3 class="fs-subtitle">Inserte los datos que se le piden</h3>
+                        <label class="unnecesary" > Pasaporte anterior </label>
+                        <input type="file" id="id_passaporte_anterior" name="passaporte_anterior" class="file_buttons" name="filename">
+                        <label class="unnecesary" > Matricula_anterior </label>
+                        <input type="file" id="id_matricula_anterior" name="matricula_anterior" class="file_buttons" name="filename">
+                        <label class="unnecesary" > Identifacion de identifacion_padre </label>
+                        <input type="file" id="id_identifacion_padre" name="identifacion_padre" class="file_buttons" name="filename">
+                        <input type="button" name="previous" class="previous action-button-previous" value="volver"/>
+                        <input type="button" name="next" class="next action-button" value="siguiente"/>
+                        
+                    </fieldset>
+                    <fieldset>
+                        <h2 class="fs-title">Fecha de cita</h2>
+                        <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+                        <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
+                        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.0/css/font-awesome.min.css">
+      
+                        <h3 class="fs-subtitle" id="subtitulo_cita">Elige un día para acudir a tu cita</h3>
+                        <div class="" style="display:flex;justify-content:center; align-items:center">
+                            <div id="datepicker"></div>
+                            <br></br>
+                        </div>
+                        <input type="text" id="fecha" name="cita_fecha"  onKeyDown="return false" />
+                        <input type="button" name="previous" class="previous action-button-previous" value="anterior"/>
+                        <input type="button" name="next" class="next action-button" value="siguiente"/>
+                        
+                    </fieldset>
+                    <fieldset>
+                        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.0/css/font-awesome.min.css">
+                        <h2 class="fs-title">Método de pago</h2>
+                        <h3 class="fs-subtitle">Elige alguna opción de pago</h3>
+                        <label for="pago1" > Paypal <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fcdn.onlinewebfonts.com%2Fsvg%2Fimg_45341.png&f=1&nofb=1" style="width:1em; height:1em"></label>
+                        
+                        <input type="radio" id="pago1" name="pago" value="Paypal">
+                        <label for="pago2" id="lpago1" > Transferencia bancaria  <img src="../static/media/icons/wallet-solid.svg" style="width:1em; height:1em" alt="nop"> </label>
+                        <input type="radio" id="pago2" name="pago" value="Transferencia bancaria">
+                        <label for="pago3"> Tarjeta de credito  <img src="../static/media/icons/credit-card-solid.svg" style="width:1em; height:1em" alt="nop"></label>
+                        <input type="radio" id="pago3" name="pago" value="Tarjeta de credito">
+                        <label for="pago4"> Omitir y pagar la cita <img src="../static/media/icons/ban-solid.svg" style="width:1em; height:1em" alt="nop"></label>
+                        <input type="radio" id="pago4" name="pago" value="omitir">
+                        <br><br>
+                        <input type="button" name="previous" class="previous action-button-previous" value="volver"/>
+                        <input type="button" name="submit" class="submit action-button" value="Finalizar" onclick="document.getElementById('submit_real').click()"/>
+                    </fieldset>
+                    <input type="text" class= "user_data" style="visibility: hidden;" name="created_by" value="{{request.user.id}}"/>   
+                    <input id="submit_real" type="submit" value="Submit"
+                    class="btn btn-success"> 
+                </form>
+            </div>    
+        </div>
+
+        {% endif%}
+        <script>
+
+            //jQuery time
+            var current_fs, next_fs, previous_fs; //fieldsets
+            var left, opacity, scale; //fieldset properties which we will animate
+            var animating; //flag to prevent quick multi-click glitches
+            $(function() {
+                $('form').submit(function() {
+                  console.log('Input 1: '+$('input[name="nombre"]').val() + ' Input 2: '+ $('input[name="CURP"]').val()); // etc.
+                });
+              });
+            $(".next").click(function(){
+                    if(animating) return false;
+                    animating = true;
+                    
+                    current_fs = $(this).parent();
+                    next_fs = $(this).parent().next();
+                    
+                    //activate next step on progressbar using the index of next_fs
+                    $("#progressbar li").eq($("fieldset").index(next_fs)).addClass("active");
+                    
+                    //show the next fieldset
+                    next_fs.show(); 
+                    //hide the current fieldset with style
+                    current_fs.animate({opacity: 0}, {
+                        step: function(now, mx) {
+                            //as the opacity of current_fs reduces to 0 - stored in "now"
+                            //1. scale current_fs down to 80%
+                            scale = 1 - (1 - now) * 0.2;
+                            //2. bring next_fs from the right(50%)
+                            left = (now * 50)+"%";
+                            //3. increase opacity of next_fs to 1 as it moves in
+                            opacity = 1 - now;
+                            current_fs.css({
+                        'transform': 'scale('+scale+')',
+                        'position': 'absolute'
+                    });
+                            next_fs.css({'left': left, 'opacity': opacity});
+                        }, 
+                        duration: 800, 
+                        complete: function(){
+                            current_fs.hide();
+                            animating = false;
+                        }, 
+                        //this comes from the custom easing plugin
+                        easing: 'easeInOutBack'
+                    });
+                });
+            
+                $(".previous").click(function(){
+                    if(animating) return false;
+                    animating = true;
+                    
+                    current_fs = $(this).parent();
+                    previous_fs = $(this).parent().prev();
+                    
+                    //de-activate current step on progressbar
+                    $("#progressbar li").eq($("fieldset").index(current_fs)).removeClass("active");
+                    
+                    //show the previous fieldset
+                    previous_fs.show(); 
+                    //hide the current fieldset with style
+                    current_fs.animate({opacity: 0}, {
+                        step: function(now, mx) {
+                            //as the opacity of current_fs reduces to 0 - stored in "now"
+                            //1. scale previous_fs from 80% to 100%
+                            scale = 0.8 + (1 - now) * 0.2;
+                            //2. take current_fs to the right(50%) - from 0%
+                            left = ((1-now) * 50)+"%";
+                            //3. increase opacity of previous_fs to 1 as it moves in
+                            opacity = 1 - now;
+                            current_fs.css({'left': left});
+                            previous_fs.css({'transform': 'scale('+scale+')', 'opacity': opacity});
+                        }, 
+                        duration: 800, 
+                        complete: function(){
+                            current_fs.hide();
+                            animating = false;
+                        }, 
+                        //this comes from the custom easing plugin
+                        easing: 'easeInOutBack'
+                    });
+                });
+                $.datepicker.regional['es'] = {
+                    closeText: 'Cerrar',
+                    prevText: '< Ant',
+                    nextText: 'Sig >',
+                    currentText: 'Hoy',
+                    monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+                    monthNamesShort: ['Ene','Feb','Mar','Abr', 'May','Jun','Jul','Ago','Sep', 'Oct','Nov','Dic'],
+                    dayNames: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
+                    dayNamesShort: ['Dom','Lun','Mar','Mié','Juv','Vie','Sáb'],
+                    dayNamesMin: ['Do','Lu','Ma','Mi','Ju','Vi','Sá'],
+                    weekHeader: 'Sm',
+                    dateFormat: 'dd/mm/yy',
+                    firstDay: 1,
+                    isRTL: false,
+                    showMonthAfterYear: false,
+                    yearSuffix: ''
+                    };
+                    $.datepicker.setDefaults($.datepicker.regional['es']);
+                    $( function() {
+                        $( "#datepicker" ).datepicker(
+                            {
+                                minDate: 1,
+                                beforeShowDay: $.datepicker.noWeekends,
+                                altField: "#fecha",
+                            }
+                        );
+                    });
+                    
+                    $(".submit").click(function(){
+                        $("#submit_real").click(); 
+                    })
+
+                    $('input[type=submit]').hide();
+                    $("#user_data").hide();
+            </script> 
+
+            <style>
+                body {
+                    background: #000 repeat 0 0 #555;
+                  }
+                
+                  .ui-datepicker {
+                    width: 216px;
+                    height: auto;
+                    margin: 5px auto 0;
+                    font: 9pt Arial, sans-serif;
+                    -webkit-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, .5);
+                    -moz-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, .5);
+                    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, .5);
+                  }
+                  
+                  .ui-datepicker a {
+                    text-decoration: none;
+                  }
+                
+                  .ui-datepicker table {
+                    width: 100%;
+                    height: 100%;
+                    color: #9D2449; 
+                  }
+                
+                  .ui-datepicker-month{
+                    border-radius: 50%;
+                    -moz-border-radius:50%;
+                    -webkit-border-radius: 50%;
+                    
+                  }
+                  .ui-datepicker-current-day .ui-state-active { 
+                    background: #b38E5D;
+                    border-color: #b38E5D;
+                    border-radius: 50%;
+                    -moz-border-radius:50%;
+                    -webkit-border-radius: 50%;
+                   }
+                   /*.ui-datepicker-prev .ui-icon, .ui-datepicker-next .ui-icon {
+                    background: #285C4D;
+                  }*/ 
+                
+                  .ui-datepicker-header {
+                    background: #285C4D;
+                    color: #9D2449;
+                    font-weight: bold;
+                    -webkit-box-shadow: inset 0px 1px 1px 0px rgba(250, 250, 250, 2);
+                    -moz-box-shadow: inset 0px 1px 1px 0px rgba(250, 250, 250, .2);
+                    box-shadow: inset 0px 1px 1px 0px rgba(250, 250, 250, .2);
+                    /*text-shadow: 1px -1px 0px #000;*/
+                    filter: dropshadow(color=#000, offx=1, offy=-1);
+                    line-height: 30px;
+                    border-width: 0 0 0 0;
+                    border-style: solid;
+                    border-color: #13322B;
+                  }
+                
+                  .ui-datepicker-title {
+                    text-align: center;
+                  }
+                  .ui-datepicker-prev span,
+                  .ui-datepicker-next span {
+                    background-image: none !important;
+                  }
+                
+                  .ui-datepicker-prev:before,
+                  .ui-datepicker-next:before {
+                    font-family: FontAwesome;
+                    position: absolute;
+                    top: 0;
+                    right: 0;
+                    bottom: 0;
+                    left: 0;
+                    display: flex;
+                    font-weight: normal;
+                    align-items: center;
+                    justify-content: center;
+                  }
+                
+                  .ui-datepicker-prev:before {
+                    content: "\f053";
+                  }
+                  
+                
+                  .ui-datepicker-next:before {
+                    content: "\f054";
+                  }
+                  .requiered{
+                    color: #9D2449;
+                    text-align: left;
+                    float: left;
+                  }
+                  .requiered::after{
+                    content: "(obligatorio *)";
+                    color: red;
+                    font-size: x-small;
+                  }
+                
+                  .unnecesary{
+                    color: #13322B;
+                    text-align: left;
+                    float: left;
+                  }
+                  #subtitulo_cita::after{
+                    content: "No se cuentan los fines de semana ni dias feriados";
+                    color: red;
+                    font-size: x-small;
+                  }
+                
+                  /**-----------------------------------------------------------------*/
+                  /*custom font*/
+                
+                
+                /*basic reset*/
+                * {
+                    margin: 0;
+                    padding: 0;
+                }
+                
+                #multiform-1 {
+                    position:fixed;
+                    width:100%;
+                    height:100%;
+                    background: #285C4D; /* fallback for old browsers */
+                    background: -webkit-linear-gradient(to left, #d4c19c, #13322B); /* Chrome 10-25, Safari 5.1-6 */
+                }
+                
+                body {
+                    font-family: montserrat, arial, verdana;
+                    background: transparent;
+                }
+                
+                /*form styles*/
+                #msform {
+                    text-align: center;
+                    position: relative;
+                    margin-bottom: 25%;
+                }
+                
+                #msform fieldset {
+                    background: white;
+                    border: 0 none;
+                    border-radius: 0px;
+                    box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.4);
+                    padding: 20px 30px;
+                    box-sizing: border-box;
+                    width: 80%;
+                    margin: 0 10%;
+                
+                    /*stacking fieldsets above each other*/
+                    position: relative;
+                }
+                
+                /*Hide all except first fieldset*/
+                #msform fieldset:not(:first-of-type) {
+                    display: none;
+                }
+                
+                /*inputs*/
+                
+                #msform input, #msform textarea {
+                    padding: 15px;
+                    border: 1px solid #ccc;
+                    border-radius: 0px;
+                    margin-bottom: 10px;
+                    width: 100%;
+                    box-sizing: border-box;
+                    font-family: montserrat;
+                    color: #2C3E50;
+                    font-size: 13px;
+                }
+                
+                
+                #msform input:focus, #msform textarea:focus {
+                    -moz-box-shadow: none !important;
+                    -webkit-box-shadow: none !important;
+                    box-shadow: none !important;
+                    border: 1px solid #9D2449;
+                    outline-width: 0;
+                    transition: All 1s ease-in;
+                    -webkit-transition: All .3s ease-in;
+                    -moz-transition: All 2s ease-in;
+                    -o-transition: All 2s ease-in;
+                }
+                
+                /*buttons*/
+                #msform .action-button {
+                    width: 100px;
+                    background: #9D2449;
+                    font-weight: bold;
+                    color: white;
+                    border: 0 none;
+                    border-radius: 25px;
+                    cursor: pointer;
+                    padding: 10px 5px;
+                    margin: 10px 5px;
+                }
+                
+                #msform .action-button:hover, #msform .action-button:focus {
+                    box-shadow: 0 0 0 2px white, 0 0 0 3px #9D2449;
+                }
+                
+                #msform .action-button-previous {
+                    width: 100px;
+                    background: #13322B;
+                    font-weight: bold;
+                    color: white;
+                    border: 0 none;
+                    border-radius: 25px;
+                    cursor: pointer;
+                    padding: 10px 5px;
+                    margin: 10px 5px;
+                }
+                
+                #msform .action-button-previous:hover, #msform .action-button-previous:focus {
+                    box-shadow: 0 0 0 2px white, 0 0 0 3px #13322B;
+                }
+                
+                /*headings*/
+                .fs-title {
+                    font-size: 18px;
+                    text-transform: uppercase;
+                    color: #2C3E50;
+                    margin-bottom: 10px;
+                    letter-spacing: 2px;
+                    font-weight: bold;
+                }
+                
+                .fs-subtitle {
+                    font-weight: normal;
+                    font-size: 13px;
+                    color: #666;
+                    margin-bottom: 20px;
+                }
+                
+                /*progressbar*/
+                #progressbar {
+                    margin-bottom: 1px;
+                    width: 100%;
+                    overflow: hidden;
+                    /*CSS counters to number the steps*/
+                    counter-reset: step;
+                }
+                
+                #progressbar li {
+                    list-style-type: none;
+                    color: white;
+                    text-transform: uppercase;
+                    font-size: 9px;
+                    width: 33.33%;
+                    float: left;
+                    position: relative;
+                    letter-spacing: 1px;
+                }
+                
+                #progressbar li:before {
+                    content: counter(step);
+                    counter-increment: step;
+                    width: 24px;
+                    height: 24px;
+                    line-height: 26px;
+                    display: block;
+                    font-size: 12px;
+                    color: #333;
+                    background: white;
+                    border-radius: 25px;
+                    margin: 0 auto 10px auto;
+                }
+                
+                /*progressbar connectors*/
+                #progressbar li:after {
+                    content: '';
+                    width: 100%;
+                    height: 2px;
+                    background: white;
+                    position: absolute;
+                    left: -50%;
+                    top: 9px;
+                    z-index: -1; /*put it behind the numbers*/
+                }
+                
+                #progressbar li:first-child:after {
+                    /*connector not needed before the first step*/
+                    content: none;
+                }
+                
+                /*marking active/completed steps green*/
+                /*The number of the step and the connector before it = green*/
+                #progressbar li.active:before, #progressbar li.active:after {
+                    background: #9D2449;
+                    color: white;
+                }
+                
+                
+                /* Not relevant to this form */
+                .dme_link {
+                    margin-top: 30px;
+                    text-align: center;
+                }
+                .dme_link a {
+                    background: #FFF;
+                    font-weight: bold;
+                    color: #9D2449;
+                    border: 0 none;
+                    border-radius: 25px;
+                    cursor: pointer;
+                    padding: 5px 25px;
+                    font-size: 12px;
+                }
+                
+                .dme_link a:hover, .dme_link a:focus {
+                    background: #C5C5F1;
+                    text-decoration: none;
+                }
+                
+                #fecha{
+                  text-align: center;
+                  margin-top: 5%;
+                }
+                
+            </style>
+     {% endblock  %}
+    
+    

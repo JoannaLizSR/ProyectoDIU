@@ -1,0 +1,79 @@
+{% extends './base.html' %}
+    {%load static%}
+     {% block  content %}
+     <h1>Eliminar usuario</h1>
+     <div class="body-delete">
+        <div class="square-del" >
+            <p class="legenda">¿Esta seguro de eliminar tu cita para el día {{dia}} del mes {{mes}} del año {{anio}} ?</p>
+            <div class="buttons">
+                <a href ="/home" class="action-button-previous">Cancelar </a>
+                <a href ="/home/delete_cita/{{cita_id}}" class="action-button">Eliminar </a>
+            </div>
+            
+        </div>
+    </div>  
+    <style>
+        .buttons{
+            display:flex
+            justify-content:space-between;
+        }
+        .legenda{
+            color: #9D2449;
+        }
+        .body-delete{
+            font-family: montserrat, arial, verdana;
+            display:flex;
+            position:fixed;
+            width:100%;
+            height:100%;
+            justify-content:center;
+            align-items:center;
+            background: #285C4D; /* fallback for old browsers */
+            
+        }
+        .square-del{
+            display:flex;
+            justify-content:center;
+            flex-direction: column;
+            box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.4);
+            border-radius:5%;
+            align-items:center; 
+            background: white;
+            width:50%;
+            height:250px;
+            padding:0;
+        }
+
+        .action-button:hover, .action-button:focus {
+            box-shadow: 0 0 0 2px white, 0 0 0 3px #9D2449;
+        }
+        .action-button {
+            width: 100px;
+            background: #9D2449;
+            font-weight: bold;
+            color: white;
+            border: 0 none;
+            border-radius: 25px;
+            cursor: pointer;
+            padding: 10px 5px;
+            margin: 10px 5px;
+        }
+        .action-button-previous:hover, #msform .action-button-previous:focus {
+            box-shadow: 0 0 0 2px white, 0 0 0 3px #B38E5D;
+        }
+        .action-button-previous {
+            width: 100px;
+            background: #285C4D;
+            font-weight: bold;
+            color: white;
+            border: 0 none;
+            border-radius: 25px;
+            cursor: pointer;
+            padding: 10px 5px;
+            margin: 10px 5px;
+        }
+        
+    </style>    
+
+     
+     {% endblock  %}
