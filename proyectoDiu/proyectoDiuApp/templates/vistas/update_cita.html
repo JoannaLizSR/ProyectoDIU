@@ -100,6 +100,7 @@
                     <input type="button" name="previous" class="previous action-button-previous" value="volver"/>
                     <input type="button" name="submit" class="submit action-button" value="Actualizar" onclick="document.getElementById('submit_real').click()"/>
                 </fieldset>
+                <input type="text" class= "user_data" style="visibility: hidden;" name="created_by" value="{{request.user.id}}"/>
                 <input id="submit_real" type="submit" value="Submit"
                 class="btn btn-success"> 
             </form>
@@ -273,9 +274,14 @@
                     -webkit-border-radius: 50%;
                     
                   }
+                  .container_barra{
+      text-align:center;
+      background-color: green;
+      height:90px;
+      }
                   .ui-datepicker-current-day .ui-state-active { 
-                    background: #285C4D;
-                    border-color: #285C4D;
+                    background: #b38E5D;
+                    border-color: #b38E5D;
                     border-radius: 50%;
                     -moz-border-radius:50%;
                     -webkit-border-radius: 50%;
