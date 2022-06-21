@@ -19,7 +19,7 @@ $ cd ProyectoDIU
 
 $ git branch 
 
-**La rama en la que está el proyecto es main **
+**La rama en la que está el proyecto es main**
 
 ###  Crear y activar el ambiente:
 
