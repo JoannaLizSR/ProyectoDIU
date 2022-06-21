@@ -17,7 +17,9 @@ $ git clone https://github.com/JoannaLizSR/ProyectoDIU.git
 
 $ cd ProyectoDIU
 
-$ git checkout joseMerge
+$ git branch 
+
+**La rama en la que está el proyecto es main **
 
 ###  Crear y activar el ambiente:
 
