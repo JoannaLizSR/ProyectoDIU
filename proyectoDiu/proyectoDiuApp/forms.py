@@ -48,7 +48,7 @@ class CitaForm(ModelForm):
         self.fields['cita_fecha'].input_formats = ['%d/%m/%Y']
         self.fields['cita_fecha'].widget = forms.DateTimeInput(attrs={
             'class': 'datepicker'
-        })  
+        })
 
 
 
