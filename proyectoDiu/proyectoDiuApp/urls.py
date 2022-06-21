@@ -16,7 +16,7 @@ urlpatterns = [
  path('inicioUsr/', views.inicioUsr, name="inicioUsr"),
  path('inicioAdmin/', views.inicioAdmin, name="inicioAdmin"),
  path('add_cita',views.add_cita,name="add_cita"),
- path('delete_cita_menu/<cita_id>',views.delete_cita_menu,name="delete_cita_menu"),
+ path('delete_cita_menu',views.delete_cita_menu,name="delete_cita_menu"),
  path('delete_cita/<cita_id>',views.delete_cita,name="delete_cita"),
- path('update_cita/<cita_id>',views.update_cita,name="update_cita"),
+ path('update_cita',views.update_cita,name="update_cita"),
 ]+ static(settings.STATIC_URL)
