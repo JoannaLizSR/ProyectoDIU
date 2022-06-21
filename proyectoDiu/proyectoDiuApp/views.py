@@ -88,7 +88,9 @@ def inicioAdmin(request):
 ********************************************************************
 '''
 def delete_cita(request,cita_id):
-    
+    user_log = str(request.user)
+    if(user_log == "AnonymousUser"):
+        return  HttpResponseRedirect('/accounts/login/')
     cita = Cita.objects.get(pk=cita_id)
     try:
         cita.delete()
@@ -99,8 +101,11 @@ def delete_cita(request,cita_id):
     finally:    
         return HttpResponseRedirect('/home')
 
-def delete_cita_menu(request,cita_id):
-    
+def delete_cita_menu(request):
+    user_log = str(request.user)
+    if(user_log == "AnonymousUser"):
+        return  HttpResponseRedirect('/accounts/login/')
+    cita_id = request.user.id
     cita =Cita.objects.get(pk=cita_id)
     cita_date = getattr(cita,'cita_fecha')
     dia = cita_date.strftime('%d')
@@ -108,7 +113,11 @@ def delete_cita_menu(request,cita_id):
     anio = cita_date.strftime('%Y')
     return render(request, "vistas/delete_cita.html",{'dia':dia,'mes':mes,'anio':anio,'cita_id':cita_id})
 
-def update_cita(request,cita_id):
+def update_cita(request):
+    user_log = str(request.user)
+    if(user_log == "AnonymousUser"):
+        return  HttpResponseRedirect('/accounts/login/')
+    cita_id = request.user.id
     cita = Cita.objects.get(pk=cita_id)
     form = CitaForm(request.POST or request.FILES or None,instance=cita)
     if form.is_valid():
@@ -123,6 +132,9 @@ def update_cita(request,cita_id):
 
 def add_cita(request):
     submitted = False
+    user_log = str(request.user)
+    if(user_log == "AnonymousUser"):
+        return  HttpResponseRedirect('/accounts/login/')
     requiered_l = ['Nombre','Apellido1', 'Apellido2', 'CURP' ,'Direccion', 'Ine','Cita fecha']
     if request.method == "POST":        
         form = CitaForm(request.POST,request.FILES)
@@ -143,4 +155,3 @@ def add_cita(request):
            
     
     return render(request,'vistas/add_cita.html',{'form':form,'submitted':submitted,'requiered_l':requiered_l})
-
